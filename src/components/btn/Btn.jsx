@@ -2,9 +2,9 @@ import React from 'react';
 
 import { Button } from './Style'
 
-const Btn = ({name}) => {
+const Btn = ({name , func}) => {
   return (
-    <Button>
+    <Button onClick={func}>
         {name}
     </Button>
   )

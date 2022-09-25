@@ -9,5 +9,10 @@ export const Button = styled.button`
     font-size: 22px;
     font-weight: 500;
     cursor: pointer;
+    transition: 0.5s;
     /* display: block; */
+
+    &:hover {
+        color: blue;
+    }
 `
