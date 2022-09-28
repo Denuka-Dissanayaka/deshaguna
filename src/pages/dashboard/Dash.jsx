@@ -14,16 +14,18 @@ const Dash = () => {
   const [display, setDisplay] = useState('');
   const [record, setRecord] = useState('');
   const [records, setRecords] = useState([]);
+  const [count, setCount] = useState(0);
 
   const navigate = useNavigate();
 
-  const {user} = UserAuth();
+  const {user, logOut} = UserAuth();
 
   const getRecords = async () => {
     try {
       const res = await axios.get(`${process.env.REACT_APP_DESHAGUNA_BACKEND}/api/v1/records/${user.email}`);
       setRecords(res.data.records);
-      //console.log(res.data.records);
+      setCount(res.data.records.length)
+      console.log(res.data.records);
     } catch(err) {
       console.log(err);
     }
@@ -33,7 +35,9 @@ const Dash = () => {
     try {
       const res = await axios.post(`${process.env.REACT_APP_DESHAGUNA_BACKEND}/api/v1/records`, {
         record,
-        email: user.email
+        email: user.email,
+        name: user.displayName,
+        image: user.photoURL
       })
       console.log(res.data);
     } catch(err) {
@@ -49,8 +53,9 @@ const Dash = () => {
       setDisplay('none');
   }
 
-  const handleDelete = async(id, email) => {
-      await axios.delete(`${process.env.REACT_APP_DESHAGUNA_BACKEND}/api/v1/records/${id}/${email}`);
+  const handleDelete = async(email) => {
+      await axios.delete(`${process.env.REACT_APP_DESHAGUNA_BACKEND}/api/v1/records/${email}`);
+      //await logOut();
       getRecords();
       navigate('/dashboard');
   }
@@ -63,9 +68,13 @@ const Dash = () => {
       getRecords();
   }, [record])
 
+  // useEffect(() => {
+  //     getRecords();
+  // }, [records])
+
   return (
     <Container>
-      <h1>Welcome <span>{user.displayName}</span></h1>
+      <div className='head'><h1>Welcome <span>{user.displayName}</span> Records: {count}</h1> {records.length > 0 &&(<button className='delete' onClick={()=>{handleDelete(user.email)}}>Delete Records</button>)}</div>
       <div className="record-area">
         <div className="add-record">
           <button onClick={() => {setDisplay('flex')}}>Add Record</button>
@@ -73,7 +82,7 @@ const Dash = () => {
         <div className="records">
           {records && (records.map((item) => {
             return (
-              <RecordCard record={item.record} id={item._id} email={item.email} delFunc={handleDelete} key={item._id}/>
+              <RecordCard record={item.records} id={item._id} email={user.email} delFunc={handleDelete} key={item._id}/>
             )
           }))}
         </div>

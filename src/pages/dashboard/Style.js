@@ -5,8 +5,15 @@ export const Container = styled.div`
     margin: auto;
     margin-top: 20px;
 
+    .head {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
     h1 span {
         color: blue;
+        margin-right: 50px;
     }
 
     .record-area {
@@ -23,6 +30,22 @@ export const Container = styled.div`
         cursor: pointer;
         font-weight: 500;
         transition: 0.5s;
+    }
+
+    .delete {
+        padding: 10px 20px;
+        font-size: 20px;
+        border-radius: 10px;
+        cursor: pointer;
+        font-weight: 500;
+        transition: 0.5s;
+        color: #fff;
+        background-color: red;
+        border: none;
+    }
+
+    .delete:hover {
+        background-color: #ba0b0b;
     }
 
     .add-record button:hover {

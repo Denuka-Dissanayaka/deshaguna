@@ -6,7 +6,7 @@ const RecordCard = ({record, id, email, delFunc}) => {
   return (
     <Container>
       <p>{record}</p>
-      <button onClick={() => {delFunc(id,email)}}>Delete</button>
+      {/* <button onClick={() => {delFunc(id,email)}}>Delete</button> */}
     </Container>
   )
 }

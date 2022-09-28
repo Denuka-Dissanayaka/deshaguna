@@ -3,11 +3,12 @@ import React from 'react'
 import {Container} from './Style';
 
 const UserCard = ({img, name}) => {
-  const image = img;
+  const images = img;
+  //console.log(image)
   return (
     <Container>
       <div className="image">
-        <img src={image} alt="USER" />
+        <img src={images} alt="" />
       </div>
       <p>{name}</p>
     </Container>
