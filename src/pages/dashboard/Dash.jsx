@@ -55,9 +55,9 @@ const Dash = () => {
 
   const handleDelete = async(email) => {
       await axios.delete(`${process.env.REACT_APP_DESHAGUNA_BACKEND}/api/v1/records/${email}`);
-      //await logOut();
-      getRecords();
-      navigate('/dashboard');
+      await logOut();
+      //getRecords();
+      //navigate('/dashboard');
   }
 
   useEffect(() => {
@@ -82,7 +82,7 @@ const Dash = () => {
         <div className="records">
           {records && (records.map((item) => {
             return (
-              <RecordCard record={item.records} id={item._id} email={user.email} delFunc={handleDelete} key={item._id}/>
+              <RecordCard record={item.record} id={item._id} email={user.email} delFunc={handleDelete} key={item._id}/>
             )
           }))}
         </div>
