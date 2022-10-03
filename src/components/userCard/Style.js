@@ -24,6 +24,11 @@ export const Container = styled.div`
      
     p {
         font-size: 25px;
+        margin-left: 50px;
+    }
+
+    .name {
+        font-weight: 700;
     }
     
 `

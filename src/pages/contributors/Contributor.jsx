@@ -13,7 +13,7 @@ const Contributor = () => {
   const getUsers = async () => {
     const res = await axios.get(`${process.env.REACT_APP_DESHAGUNA_BACKEND}/api/v1/users`);
     setUsers(res.data.users)
-    //console.log(res.data.users)
+    console.log(res.data.users)
   }
 
   useEffect(() => {
@@ -28,7 +28,7 @@ const Contributor = () => {
           users && (
             users.map((item) => {
               return (
-                <UserCard key={item._id} img={item.image} name={item.name}/>
+                <UserCard key={item._id} img={item.image} name={item.name} records={item.numOfRecords}/>
               )
             })
           )

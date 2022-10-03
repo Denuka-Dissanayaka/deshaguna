@@ -2,7 +2,7 @@ import React from 'react'
 
 import {Container} from './Style';
 
-const UserCard = ({img, name}) => {
+const UserCard = ({img, name, records}) => {
   const images = img;
   //console.log(image)
   return (
@@ -10,7 +10,8 @@ const UserCard = ({img, name}) => {
       <div className="image">
         <img src={images} alt="" />
       </div>
-      <p>{name}</p>
+      <p className='name'>{name}</p>
+      <p>Number of Records: <span style={{marginLeft: '15px'}}>{records}</span> </p>
     </Container>
   )
 }
